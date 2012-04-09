@@ -8,6 +8,7 @@ function anotherTrim(raw) {
   }
 }
 
+/* check element support */
 function elementSupportsAttribute(element, attribute) {
   return (attribute in document.createElement(element));
 };
@@ -33,4 +34,20 @@ if (!elementSupportsAttribute('textarea', 'placeholder')) {
           }
         });
   });
+}
+
+/* remove duplicate in an array or string */
+function uniq(arr) {
+  // first check if arr is an array
+  var arr = (this instanceof Array) ? arr : Array.prototype.slice.call(arr);
+  var counter = {}, newArr = [];
+  var i = 0, l = arr.length;
+  for (; i < l; i++) {
+    if (!counter[arr[i]]) {
+      // avoid index of 0 being evaluated as false
+      counter[arr[i]] = i + 1;
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
 }
